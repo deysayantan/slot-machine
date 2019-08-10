@@ -1,4 +1,4 @@
-import React, { Component } from 'react'
+import React, { Component,Fragment } from 'react'
 import { connect } from 'react-redux';
 import Banana from '../../Assets/banana.jpg'
 import Orange from '../../Assets/orange.jpg'
@@ -12,34 +12,40 @@ class Slot extends Component {
     constructor(props) {
         super(props)
         this.state = {
-            label : this.sample(options),
-            chosenImage : null
+            label1 : this.sample(options),
+            label2 : this.sample(options),
+            label3 : this.sample(options),
+            chosenImageSlot1 : null,
+            chosenImageSlot2 : null,
+            chosenImageSlot3 : null,
         }
+        this.timer = null
     }
     componentDidMount(){
-        this.chooseImage()
-        this.startInterval(5000)
+        this.chooseImage(1)
+        this.chooseImage(2)
+        this.chooseImage(3)
     }
     componentDidUpdate(prevProps,prevStates){
         if(prevProps.userInteraction !== this.props.userInteraction){
-            clearInterval(this.interval)
-            console.log(`${this.props.serial} ::: ${this.state.label}`)
             if(this.props.userInteraction){
                 this.startInterval(50)
-                setTimeout(()=> {
+                this.timer = setTimeout(()=>{
                     clearInterval(this.interval)
-                    const payload = {
-                        "key":this.props.serial,
-                        "value":this.state.label
-                    }
-                    this.props.saveResult(payload)
-                },10000) 
+                    this.props.resetSlotMachine()
+                }, 10000);
             }
             else{
-                this.startInterval(5000)
-                console.log("called")
-            }
-            
+                clearInterval(this.interval)
+                clearTimeout(this.timer)
+                const arr = [this.state.label1,this.state.label2,this.state.label3]
+                // const payload = {
+                //     "key":this.props.serial,
+                //     "value":this.state.label
+                // }
+                // this.props.saveResult(payload)
+                console.log(arr)
+            }     
         }
     }
     componentWillUnmount(){
@@ -49,17 +55,39 @@ class Slot extends Component {
         this.interval = setInterval(
             () => {
                 this.setState({
-                    label:this.sample(options)
+                    label1:this.sample(options),
+                    label2:this.sample(options),
+                    label3:this.sample(options)
                 },()=>{
-                    this.chooseImage()
+                    this.chooseImage(1)
+                    this.chooseImage(2)
+                    this.chooseImage(3)
                 })
             }
         ,msec)
     }
     sample = arr => arr[Math.floor(Math.random() * arr.length)];
-    chooseImage = () => {
+    chooseImage = (id) => {
+        if(id === 1){
+            let image = this.selectSlotImage(this.state.label1)
+            this.setState({
+                chosenImageSlot1: image
+            })
+        }else if(id === 2){
+            let image = this.selectSlotImage(this.state.label2)
+            this.setState({
+                chosenImageSlot2: image
+            })
+        }else if(id === 3){
+            let image = this.selectSlotImage(this.state.label3)
+            this.setState({
+                chosenImageSlot3: image
+            })
+        }
+    }
+    selectSlotImage = (id) => {
         let image;
-        switch(this.state.label){
+        switch(id){
             case 1:
                 image = Banana
                 break;
@@ -76,14 +104,15 @@ class Slot extends Component {
                 image = null
                 break;
         }
-        this.setState({
-            chosenImage: image
-        })
+        return image
     }
     render() {
-        console.log(this.props)
         return (
-            <img src={this.state.chosenImage} alt="icon" style={Styles.image} />
+            <Fragment>
+                <img src={this.state.chosenImageSlot1} alt="icon" style={Styles.image} />
+                <img src={this.state.chosenImageSlot2} alt="icon" style={Styles.image} />
+                <img src={this.state.chosenImageSlot3} alt="icon" style={Styles.image} />
+            </Fragment>
         )
     }
 }

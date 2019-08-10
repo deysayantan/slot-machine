@@ -6,21 +6,46 @@ class SlotContainer extends Component {
     constructor(props) {
         super(props)
         this.state = {
-            userInteraction : false
+            startSlot : false,
+        }
+        this.timer = null
+    }
+    componentDidMount(){
+        this.timer = setTimeout(()=>{
+            this.startStopSlot(true)
+        }, 5000);
+    }
+    updateUserInteraction = (flag) => {
+        // if button not pressed ,autoStared will become true after 5 sec
+        this.startStopSlot(flag)
+        clearTimeout(this.timer)
+        if(!flag){
+            this.timer = setTimeout(()=>{
+                this.startStopSlot(true)
+            }, 5000);
         }
     }
-    updateUserInteraction = () => {
+    resetSlotMachine = () =>{
+        clearTimeout(this.timer)
+        this.startStopSlot(false)
+        this.timer = setTimeout(()=>{
+            this.startStopSlot(true)
+        }, 5000);
+    }
+    startStopSlot = (flag) =>{
         this.setState({
-            userInteraction : !this.state.userInteraction
+            startSlot : flag
         })
     }
     render() {
         return (
             <div style={SlotContainerStyles.container}>
-                <Slot serial="slot1" userInteraction={this.state.userInteraction} />
-                <Slot serial="slot2" userInteraction={this.state.userInteraction} />
-                <Slot serial="slot3" userInteraction={this.state.userInteraction} />
+                <Slot 
+                    resetSlotMachine={this.resetSlotMachine}
+                    userInteraction={this.state.startSlot} 
+                />
                 <ControlButton 
+                    slotStatus={this.state.startSlot}
                     userInteractionCallback={this.updateUserInteraction} 
                 />
             </div>
