@@ -1,9 +1,12 @@
 import React, { Component } from 'react'
+import { connect } from 'react-redux';
 import Banana from '../../Assets/banana.jpg'
 import Orange from '../../Assets/orange.jpg'
 import Strawberry from '../../Assets/strawberry.jpg'
 import Monkey from '../../Assets/monkey.jpg'
 import { Styles } from '../styles/AppStyle';
+import {saveResult} from '../../action'
+
 const options = [1,2,3,4]
 class Slot extends Component {
     constructor(props) {
@@ -25,6 +28,11 @@ class Slot extends Component {
                 this.startInterval(50)
                 setTimeout(()=> {
                     clearInterval(this.interval)
+                    const payload = {
+                        "key":this.props.serial,
+                        "value":this.state.label
+                    }
+                    this.props.saveResult(payload)
                 },10000) 
             }
             else{
@@ -73,12 +81,24 @@ class Slot extends Component {
         })
     }
     render() {
+        console.log(this.props)
         return (
             <img src={this.state.chosenImage} alt="icon" style={Styles.image} />
         )
     }
 }
 
-export default Slot;
+const mapStateToProps = ({ result }) => ({
+    result,
+});
+
+const mapDispatchToProps = dispatch => ({
+    saveResult: (payload) => dispatch(saveResult(payload)),
+});
+
+export default connect(
+    mapStateToProps,
+    mapDispatchToProps,
+)(Slot);
 
 
