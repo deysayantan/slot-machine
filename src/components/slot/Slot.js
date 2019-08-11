@@ -39,11 +39,11 @@ class Slot extends Component {
                 clearInterval(this.interval)
                 clearTimeout(this.timer)
                 const arr = [this.state.label1,this.state.label2,this.state.label3]
-                // const payload = {
-                //     "key":this.props.serial,
-                //     "value":this.state.label
-                // }
-                // this.props.saveResult(payload)
+                const payload = {
+                    "key":this.props.serial,
+                    "value":this.state.label
+                }
+                this.props.saveResult(payload)
                 console.log(arr)
             }     
         }

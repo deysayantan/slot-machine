@@ -1,6 +1,9 @@
 const RESULT = {
-    SAVE: 'RESULT_SAVE',
-    FETCH: 'RESULT_FETCH'
+    SAVE: 'RESULT_SAVE'
 };
 
-export { RESULT };
+const USER_INTERACTION = {
+    UPDATE : 'UPDATE_USER_INTERACTION'
+};
+
+export { RESULT,USER_INTERACTION };

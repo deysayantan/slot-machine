@@ -2,6 +2,9 @@ import React, { Component } from 'react'
 import { SlotContainerStyles } from '../styles/AppStyle'
 import Slot from './Slot'
 import ControlButton from './ControlButton'
+import {connect} from 'react-redux'
+import {setUserInteraction} from '../../action'
+import ResultWindow from './ResultWindow'
 class SlotContainer extends Component {
     constructor(props) {
         super(props)
@@ -11,16 +14,23 @@ class SlotContainer extends Component {
         this.timer = null
     }
     componentDidMount(){
+        const payload = {
+            "userActed" : false
+        }
+        this.props.setUserInteraction(payload)
         this.timer = setTimeout(()=>{
             this.startStopSlot(true)
         }, 5000);
     }
     updateUserInteraction = (flag) => {
-        // if button not pressed ,autoStared will become true after 5 sec
         this.startStopSlot(flag)
         clearTimeout(this.timer)
         if(!flag){
             this.timer = setTimeout(()=>{
+                const payload = {
+                    "userActed" : false
+                }
+                this.props.setUserInteraction(payload)
                 this.startStopSlot(true)
             }, 5000);
         }
@@ -29,6 +39,10 @@ class SlotContainer extends Component {
         clearTimeout(this.timer)
         this.startStopSlot(false)
         this.timer = setTimeout(()=>{
+            const payload = {
+                "userActed" : false
+            }
+            this.props.setUserInteraction(payload)
             this.startStopSlot(true)
         }, 5000);
     }
@@ -48,9 +62,21 @@ class SlotContainer extends Component {
                     slotStatus={this.state.startSlot}
                     userInteractionCallback={this.updateUserInteraction} 
                 />
+                <ResultWindow />
             </div>
         )
     }
 }
 
-export default SlotContainer;
+const mapStateToProps = ({ userInteraction }) => ({
+    userInteraction,
+});
+
+const mapDispatchToProps = dispatch => ({
+    setUserInteraction: (payload) => dispatch(setUserInteraction(payload)),
+});
+
+export default connect(
+    mapStateToProps,
+    mapDispatchToProps,
+)(SlotContainer);

@@ -1,5 +1,6 @@
 import React, { Component } from 'react'
-
+import {connect} from 'react-redux'
+import {setUserInteraction} from '../../action'
 class ControlButton extends Component {
     constructor(props) {
         super(props)
@@ -17,6 +18,12 @@ class ControlButton extends Component {
         }
     }
     changeButtonState = () =>{
+        if(!this.props.userInteraction.userActed){
+            const payload = {
+                "userActed" : true
+            }
+            this.props.setUserInteraction(payload)
+        }
         this.setState(prevState => {
             return {
                 started : !prevState.started,
@@ -35,4 +42,15 @@ class ControlButton extends Component {
     }
 }
 
-export default ControlButton
+const mapStateToProps = ({ userInteraction }) => ({
+    userInteraction,
+});
+
+const mapDispatchToProps = dispatch => ({
+    setUserInteraction: (payload) => dispatch(setUserInteraction(payload)),
+});
+
+export default connect(
+    mapStateToProps,
+    mapDispatchToProps,
+)(ControlButton);
