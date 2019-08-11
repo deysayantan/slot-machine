@@ -1,13 +1,14 @@
 import { USER_INTERACTION } from '../constants';
 
-const resultReducer = (state = {}, action) => {
+const userInteractionReducer = (state = {}, action) => {
     if (action.type === USER_INTERACTION.UPDATE) {
+        console.log("userInteractionReducer")
         return{
             ...state,
-            userActed:action.data.userActed,
+            userActed:action.data,
         }
     }
     return state;
 };
 
-export default resultReducer;
+export default userInteractionReducer;

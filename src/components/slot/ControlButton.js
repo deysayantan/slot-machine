@@ -18,10 +18,8 @@ class ControlButton extends Component {
         }
     }
     changeButtonState = () =>{
-        const payload = {
-            "userActed" : true
-        }
-        this.props.setUserInteraction(payload)
+
+        this.props.setUserInteraction(true)
 
         this.setState(prevState => {
             return {

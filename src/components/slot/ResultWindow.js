@@ -4,25 +4,26 @@ class ResultWindow extends Component {
     constructor(props) {
         super(props)
         this.state = {
-            shouldAppear : false
+            shouldAppear : false,
+            endingCombination:[]
         }
         this.timer = null
     }  
     componentDidUpdate(prevProps,prevStates){
-        
-        if(prevProps.userInteraction.userActed !== this.props.userInteraction.userActed){
-            console.log('componentDidUpdate1')
+        console.log(JSON.stringify(this.props))
+        if(prevProps.slotRunning.slotRunning !== this.props.slotRunning.slotRunning){
             if(this.props.slotRunning.slotRunning){
-                console.log('componentDidUpdate2')
-                //clearTimeout(this.timer)
+                clearTimeout(this.timer)
                 this.setShouldAppear(false)
             }
-            if(this.props.userInteraction.userActed && !this.props.slotRunning.slotRunning){
+            if(!this.props.slotRunning.slotRunning && this.props.userInteraction.userActed){
+                clearTimeout(this.timer)
                 this.setShouldAppear(true)
-                //clearTimeout(this.timer)
-                //this.timer = setTimeout(()=>{
-                   // this.setShouldAppear(false)
-                //}, 3000);
+                const endingCombination = this.props.result.result
+                this.setState({endingCombination})
+                this.timer = setTimeout(()=>{
+                   this.setShouldAppear(false)
+                }, 3000);
             }
         }
     }
@@ -34,18 +35,14 @@ class ResultWindow extends Component {
     render() {
         return (
             <div>
-                {JSON.stringify(this.props)}
-                {this.state.shouldAppear && <div>Prize will be shown</div>}
+                {this.state.shouldAppear && <div>Prize {JSON.stringify(this.state.endingCombination)}</div>}
             </div>
         )
     }
 }
 
 
-const mapStateToProps = ({ userInteraction,slotRunning }) => ({
-    userInteraction,
-    slotRunning
-});
+const mapStateToProps = state => state;
 
 
 export default connect(

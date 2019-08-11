@@ -38,11 +38,6 @@ class Slot extends Component {
             else{
                 clearInterval(this.interval)
                 clearTimeout(this.timer)
-                const arr = [this.state.label1,this.state.label2,this.state.label3]
-                const payload = {
-                    "value":arr
-                }
-                this.props.saveResult(payload)
             }     
         }
     }
@@ -57,6 +52,11 @@ class Slot extends Component {
                     label2:this.sample(options),
                     label3:this.sample(options)
                 },()=>{
+                    const arr = [this.state.label1,this.state.label2,this.state.label3]
+                    const payload = {
+                        "value":arr
+                    }
+                    this.props.saveResult(payload)
                     this.chooseImage(1)
                     this.chooseImage(2)
                     this.chooseImage(3)
@@ -120,7 +120,7 @@ const mapStateToProps = ({ result }) => ({
 });
 
 const mapDispatchToProps = dispatch => ({
-    saveResult: (payload) => dispatch(saveResult(payload)),
+    saveResult: (payload) => dispatch(saveResult(payload))
 });
 
 export default connect(

@@ -14,24 +14,18 @@ class SlotContainer extends Component {
         this.timer = null
     }
     componentDidMount(){
-        const payload = {
-            "userActed" : false
-        }
         this.props.setSlotRunningStatus(false)
-        this.props.setUserInteraction(payload)
+        this.props.setUserInteraction(false)
         this.timer = setTimeout(()=>{
             this.startStopSlot(true)
         }, 5000);
     }
     updateUserInteraction = (flag) => {
-        this.startStopSlot(flag)
         clearTimeout(this.timer)
+        this.startStopSlot(flag)
         if(!flag){
             this.timer = setTimeout(()=>{
-                const payload = {
-                    "userActed" : false
-                }
-                this.props.setUserInteraction(payload)
+                this.props.setUserInteraction(false)
                 this.startStopSlot(true)
             }, 5000);
         }
@@ -40,10 +34,7 @@ class SlotContainer extends Component {
         clearTimeout(this.timer)
         this.startStopSlot(false)
         this.timer = setTimeout(()=>{
-            const payload = {
-                "userActed" : false
-            }
-            this.props.setUserInteraction(payload)
+            this.props.setUserInteraction(false)
             this.startStopSlot(true)
         }, 5000);
     }
