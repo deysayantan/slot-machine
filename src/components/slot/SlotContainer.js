@@ -3,7 +3,7 @@ import { SlotContainerStyles } from '../styles/AppStyle'
 import Slot from './Slot'
 import ControlButton from './ControlButton'
 import {connect} from 'react-redux'
-import {setUserInteraction} from '../../action'
+import {setUserInteraction,setSlotRunningStatus} from '../../action'
 import ResultWindow from './ResultWindow'
 class SlotContainer extends Component {
     constructor(props) {
@@ -17,6 +17,7 @@ class SlotContainer extends Component {
         const payload = {
             "userActed" : false
         }
+        this.props.setSlotRunningStatus(false)
         this.props.setUserInteraction(payload)
         this.timer = setTimeout(()=>{
             this.startStopSlot(true)
@@ -47,6 +48,7 @@ class SlotContainer extends Component {
         }, 5000);
     }
     startStopSlot = (flag) =>{
+        this.props.setSlotRunningStatus(flag)
         this.setState({
             startSlot : flag
         })
@@ -68,12 +70,14 @@ class SlotContainer extends Component {
     }
 }
 
-const mapStateToProps = ({ userInteraction }) => ({
+const mapStateToProps = ({ userInteraction,slotRunning }) => ({
     userInteraction,
+    slotRunning
 });
 
 const mapDispatchToProps = dispatch => ({
     setUserInteraction: (payload) => dispatch(setUserInteraction(payload)),
+    setSlotRunningStatus : flag => dispatch(setSlotRunningStatus(flag))
 });
 
 export default connect(

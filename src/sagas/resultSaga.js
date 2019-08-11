@@ -1,5 +1,4 @@
-import { put, call, takeEvery, select } from 'redux-saga/effects';
-import { saveResult } from '../action/index';
+import { takeEvery } from 'redux-saga/effects';
 import { RESULT } from '../constants';
 
 export function* saveResultSaga(payload) {

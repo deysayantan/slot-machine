@@ -18,12 +18,11 @@ class ControlButton extends Component {
         }
     }
     changeButtonState = () =>{
-        if(!this.props.userInteraction.userActed){
-            const payload = {
-                "userActed" : true
-            }
-            this.props.setUserInteraction(payload)
+        const payload = {
+            "userActed" : true
         }
+        this.props.setUserInteraction(payload)
+
         this.setState(prevState => {
             return {
                 started : !prevState.started,

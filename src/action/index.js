@@ -1,4 +1,4 @@
-import { RESULT,USER_INTERACTION } from '../constants';
+import { RESULT,USER_INTERACTION,SLOT_RUNNING_STATUS } from '../constants';
 
 const saveResult = data => ({
     type: RESULT.SAVE,
@@ -10,7 +10,13 @@ const setUserInteraction = data => ({
     data
 });
 
+const setSlotRunningStatus = data => ({
+    type : SLOT_RUNNING_STATUS.STATUS,
+    data
+});
+
 export {
     saveResult,
-    setUserInteraction
+    setUserInteraction,
+    setSlotRunningStatus
 };
