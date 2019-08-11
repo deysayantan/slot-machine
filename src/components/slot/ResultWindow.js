@@ -10,7 +10,6 @@ class ResultWindow extends Component {
         this.timer = null
     }  
     componentDidUpdate(prevProps,prevStates){
-        console.log(JSON.stringify(this.props))
         if(prevProps.slotRunning.slotRunning !== this.props.slotRunning.slotRunning){
             if(this.props.slotRunning.slotRunning){
                 clearTimeout(this.timer)

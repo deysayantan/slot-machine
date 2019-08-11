@@ -1,7 +1,7 @@
 import { takeEvery } from 'redux-saga/effects';
 import { RESULT } from '../constants';
 
-export function* saveResultSaga(payload) {
+function saveResultSaga(payload) {
     return payload
 }
 

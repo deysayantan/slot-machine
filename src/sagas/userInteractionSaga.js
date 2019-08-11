@@ -1,9 +1,7 @@
-import { takeEvery,put } from 'redux-saga/effects';
-import { setUserInteraction } from '../action/index';
+import { takeEvery } from 'redux-saga/effects';
 import { USER_INTERACTION } from '../constants';
 
-export function* updateUserInteractionSaga(payload) {
-    //yield put(setUserInteraction(payload.value));
+function updateUserInteractionSaga(payload) {
     return payload
 }
 

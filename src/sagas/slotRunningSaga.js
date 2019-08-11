@@ -1,7 +1,7 @@
 import { takeEvery } from 'redux-saga/effects';
 import { SLOT_RUNNING_STATUS } from '../constants';
 
-export function* updateSlotRunningStatusSaga(payload) {
+function updateSlotRunningStatusSaga(payload) {
     return payload;
 }
 
