@@ -1,5 +1,6 @@
 import React, { Component } from 'react'
 import {connect} from 'react-redux'
+import prizeDecisionMaker from '../../Helper/PrizeDecisionMaker'
 class ResultWindow extends Component {
     constructor(props) {
         super(props)
@@ -34,7 +35,7 @@ class ResultWindow extends Component {
     render() {
         return (
             <div>
-                {this.state.shouldAppear && <div>Prize {JSON.stringify(this.state.endingCombination)}</div>}
+                {this.state.shouldAppear && <div>{prizeDecisionMaker(this.state.endingCombination)}</div>}
             </div>
         )
     }
