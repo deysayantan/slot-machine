@@ -46,16 +46,22 @@ class SlotContainer extends Component {
     }
     render() {
         return (
-            <div style={SlotContainerStyles.container}>
-                <Slot 
-                    resetSlotMachine={this.resetSlotMachine}
-                    userInteraction={this.state.startSlot} 
-                />
-                <ControlButton 
-                    slotStatus={this.state.startSlot}
-                    userInteractionCallback={this.updateUserInteraction} 
-                />
-                <ResultWindow />
+            <div>
+                <div style={SlotContainerStyles.container}>
+                    <Slot 
+                        resetSlotMachine={this.resetSlotMachine}
+                        userInteraction={this.state.startSlot} 
+                    />
+                </div>
+                <div style={SlotContainerStyles.itemContainer}>
+                    <ControlButton 
+                        slotStatus={this.state.startSlot}
+                        userInteractionCallback={this.updateUserInteraction} 
+                    />
+                </div>
+                <div style={SlotContainerStyles.itemContainer}>
+                    <ResultWindow />
+                </div>
             </div>
         )
     }

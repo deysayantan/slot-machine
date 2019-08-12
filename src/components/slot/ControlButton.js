@@ -1,6 +1,7 @@
 import React, { Component } from 'react'
 import {connect} from 'react-redux'
 import {setUserInteraction} from '../../action'
+import {ControlButtonStyles} from '../styles/AppStyle'
 export class ControlButton extends Component {
     constructor(props) {
         super(props)
@@ -32,7 +33,7 @@ export class ControlButton extends Component {
     }
     render() {
         return (
-            <button onClick={this.changeButtonState}>
+            <button style={ControlButtonStyles.btn} onClick={this.changeButtonState}>
                 {this.state.label}
             </button>
         )

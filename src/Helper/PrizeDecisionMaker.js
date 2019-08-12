@@ -52,7 +52,7 @@ const twoNonConsicutiveMatch = (arr) =>{
 }
 
 const prizeDecisionMaker = (arr) =>{
-    if(arr.length !== 3){
+    if(!arr || arr.length !== 3){
         return "Invalid input"
     }else{
         return decide(arr)

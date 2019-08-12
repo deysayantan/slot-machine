@@ -17,5 +17,8 @@ describe('Testing all possible outputs',()=>{
     it('No slots matched,user does ot win prize', () => {
         expect(prizeDecisionMaker([4,3,2])).toEqual('Oops ! Better luck next time')
     })
+    it('Invalid input', () => {
+        expect(prizeDecisionMaker([4,3])).toEqual('Invalid input')
+    })
 })
 
