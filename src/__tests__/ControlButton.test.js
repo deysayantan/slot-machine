@@ -1,28 +1,40 @@
 import React from 'react';
-import {shallow} from 'enzyme'
 import ReactDOM from 'react-dom';
-import ControlButton from '../components/slot/ControlButton';
+import ControlButtonShallow from '../components/slot/ControlButton';
+import { ControlButton } from '../components/slot/ControlButton'
 import Adapter from 'enzyme-adapter-react-16'
-import { configure } from 'enzyme'
+import { configure,shallow,mount } from 'enzyme'
+import configureMockStore from "redux-mock-store";
+import { Provider } from "react-redux";
 
 configure({ adapter: new Adapter() })
 
+const mockStore = configureMockStore();
+const store = mockStore({});
 const mockCallBack = jest.fn(); 
-const controlButtonElement = shallow((<ControlButton userInteractionCallback={mockCallBack} />));
 
-describe('test login module',()=>{
+const controlButtonElement = shallow(<Provider store={store}><ControlButtonShallow userInteractionCallback={mockCallBack} /></Provider>);
+
+
+describe('initial snapshot test for hoc',()=>{
     it('renders app module correctly',()=>{
         expect(controlButtonElement).toMatchSnapshot();
     });
 });
 
+describe('initial snapshot test ',()=>{
+    it('renders app module correctly',()=>{
+        expect(<ControlButton userInteractionCallback={mockCallBack} />).toMatchSnapshot();
+    });
+});
 
 describe('Test Control Button component', () => {
-    controlButtonElement.find('button').simulate('click');
+    const wrapper = mount(<ControlButton userInteractionCallback={mockCallBack} setUserInteraction={mockCallBack} />)
+    wrapper.find('button').simulate('click');
     it('Test click event', () => {     
-      expect(mockCallBack.mock.calls.length).toEqual(1);
+      expect(mockCallBack.mock.calls.length).toEqual(2);
     });
     it('whether clicking button changes state',()=>{
-        expect(controlButtonElement.state().started).toEqual(true)
+        expect(wrapper.state().started).toEqual(true)
     })
 });

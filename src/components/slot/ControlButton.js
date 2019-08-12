@@ -1,7 +1,7 @@
 import React, { Component } from 'react'
 import {connect} from 'react-redux'
 import {setUserInteraction} from '../../action'
-class ControlButton extends Component {
+export class ControlButton extends Component {
     constructor(props) {
         super(props)
         this.state = {

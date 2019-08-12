@@ -1,3 +1,30 @@
 // Jest Snapshot v1, https://goo.gl/fbAQLP
 
-exports[`test login module renders app module correctly 1`] = `ShallowWrapper {}`;
+exports[`initial snapshot test  renders app module correctly 1`] = `
+<ControlButton
+  userInteractionCallback={
+    [MockFunction] {
+      "calls": Array [
+        Array [
+          true,
+        ],
+        Array [
+          true,
+        ],
+      ],
+      "results": Array [
+        Object {
+          "type": "return",
+          "value": undefined,
+        },
+        Object {
+          "type": "return",
+          "value": undefined,
+        },
+      ],
+    }
+  }
+/>
+`;
+
+exports[`initial snapshot test for hoc renders app module correctly 1`] = `ShallowWrapper {}`;

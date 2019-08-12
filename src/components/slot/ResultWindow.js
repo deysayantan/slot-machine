@@ -33,6 +33,7 @@ class ResultWindow extends Component {
         })
     }
     render() {
+        console.log(this.props)
         return (
             <div>
                 {this.state.shouldAppear && <div>{prizeDecisionMaker(this.state.endingCombination)}</div>}
