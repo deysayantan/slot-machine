@@ -5,7 +5,7 @@ import ControlButton from './ControlButton'
 import {connect} from 'react-redux'
 import {setUserInteraction,setSlotRunningStatus} from '../../action'
 import ResultWindow from './ResultWindow'
-class SlotContainer extends Component {
+export class SlotContainer extends Component {
     constructor(props) {
         super(props)
         this.state = {

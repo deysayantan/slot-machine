@@ -1,10 +1,3 @@
-Points after clarification :
-
-1) the machine should be ready for another process immediately after the full cycle(win or lose)
-
-2) no need to automatically start if it is not a first try
-
-
 ---------------- EXERCISE ----------------
 
  
@@ -26,6 +19,13 @@ The machine starts with the symbols in some random position The machine has a st
  
 
 Please, come with a reasonable simple design and a solution. It needs to be properly tested. No need of server side. Just HTML5/Javascript Please push the code to your Github repo otherwise you can send the code back attached to the mail.
+
+
+Points after clarification :
+
+1) the machine should be ready for another process immediately after the full cycle(win or lose)
+
+2) no need to automatically start if it is not a first try
 
 
 
