@@ -13,8 +13,21 @@ configure({ adapter: new Adapter() })
 const mockCallBack = jest.fn();
 const slotElement = shallow((<Provider store={store}><Slot serial="slot1" userInteraction={mockCallBack} /></Provider>));
 
-describe('test login module',()=>{
+describe('Slot component snapshot',()=>{
     it('renders app module correctly',()=>{
         expect(slotElement).toMatchSnapshot();
     });
 });
+describe('Initial slot assignment',()=>{
+    const componentInstance = slotElement.instance();
+    const slot = new componentInstance.props.children.type.WrappedComponent(0)
+    it('slot 1 value must be 1,2,3 or 4',()=>{
+        expect([1, 2, 3, 4]).toContain(slot.state.label1)
+    })
+    it('slot 2 value must be 1,2,3 or 4',()=>{
+        expect([1, 2, 3, 4]).toContain(slot.state.label2)
+    })
+    it('slot 3 value must be 1,2,3 or 4',()=>{
+        expect([1, 2, 3, 4]).toContain(slot.state.label3)
+    })
+})
