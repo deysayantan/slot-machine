@@ -18,7 +18,7 @@ describe('Testing all possible outputs',()=>{
         expect(prizeDecisionMaker([4,3,2])).toEqual('Oops ! Better luck next time')
     })
     it('Invalid input', () => {
-        expect(prizeDecisionMaker([4,3])).toEqual('Invalid input')
+        expect(prizeDecisionMaker([])).toEqual('Invalid input')
     })
 })
 
