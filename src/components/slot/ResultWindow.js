@@ -22,9 +22,6 @@ class ResultWindow extends Component {
                 this.setShouldAppear(true)
                 const endingCombination = this.props.result.result
                 this.setState({endingCombination})
-                // this.timer = setTimeout(()=>{
-                //    this.setShouldAppear(false)
-                // }, 3000);
             }
         }
     }

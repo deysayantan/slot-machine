@@ -2,7 +2,7 @@ Points after clarification :
 
 1) the machine should be ready for another process immediately after the full cycle(win or lose)
 
-2) no need to automatically start/stop if it is not a first try
+2) no need to automatically start if it is not a first try
 
 
 ---------------- EXERCISE ----------------
