@@ -1,6 +1,7 @@
 import React, { Component } from 'react'
 import {connect} from 'react-redux'
 import prizeDecisionMaker from '../../Helper/PrizeDecisionMaker'
+import {ResultContainerStyles} from '../styles/AppStyle'
 class ResultWindow extends Component {
     constructor(props) {
         super(props)
@@ -21,9 +22,9 @@ class ResultWindow extends Component {
                 this.setShouldAppear(true)
                 const endingCombination = this.props.result.result
                 this.setState({endingCombination})
-                this.timer = setTimeout(()=>{
-                   this.setShouldAppear(false)
-                }, 3000);
+                // this.timer = setTimeout(()=>{
+                //    this.setShouldAppear(false)
+                // }, 3000);
             }
         }
     }
@@ -34,9 +35,16 @@ class ResultWindow extends Component {
     }
     render() {
         return (
-            <div>
-                {this.state.shouldAppear && <div>{prizeDecisionMaker(this.state.endingCombination)}</div>}
-            </div>
+            <>
+                { this.state.shouldAppear && 
+                <div style={ResultContainerStyles.resultContainer}>
+                    <span style={ResultContainerStyles.resultWin}>
+                        {prizeDecisionMaker(this.state.endingCombination)}
+                    </span>
+                    <span style={ResultContainerStyles.playAgain}>Press "START" to play again</span>
+                </div>
+                }
+            </>
         )
     }
 }

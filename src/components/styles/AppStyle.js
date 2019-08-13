@@ -41,3 +41,24 @@ export const ControlButtonStyles = {
         fontSize: 20
     }
 }
+
+export const ResultContainerStyles = {
+    resultContainer :{ 
+        backgroundColor:'#f3f3f3',
+        padding:20
+    },
+    resultWin :{ 
+        display:'block',
+        fontSize: 30
+    },
+    resultLose :{ 
+        display:'block',
+        fontSize: 30
+    },
+    playAgain : {
+        display:'block',
+        fontSize: 25,
+        marginTop:20,
+        color:'blue'
+    }
+}

@@ -17,26 +17,27 @@ class SlotContainer extends Component {
         this.props.setSlotRunningStatus(false)
         this.props.setUserInteraction(false)
         this.timer = setTimeout(()=>{
+            this.props.setUserInteraction(true)
             this.startStopSlot(true)
         }, 5000);
     }
     updateUserInteraction = (flag) => {
         clearTimeout(this.timer)
         this.startStopSlot(flag)
-        if(!flag){
-            this.timer = setTimeout(()=>{
-                this.props.setUserInteraction(false)
-                this.startStopSlot(true)
-            }, 5000);
-        }
+        // if(!flag){
+        //     this.timer = setTimeout(()=>{
+        //         this.props.setUserInteraction(false)
+        //         this.startStopSlot(true)
+        //     }, 5000);
+        // }
     }
     resetSlotMachine = () =>{
         clearTimeout(this.timer)
         this.startStopSlot(false)
-        this.timer = setTimeout(()=>{
-            this.props.setUserInteraction(false)
-            this.startStopSlot(true)
-        }, 5000);
+        // this.timer = setTimeout(()=>{
+        //     this.props.setUserInteraction(false)
+        //     this.startStopSlot(true)
+        // }, 5000);
     }
     startStopSlot = (flag) =>{
         this.props.setSlotRunningStatus(flag)

@@ -1,10 +1,10 @@
 const decide = (arr) => {
     if(allSlotsMatched(arr)){
-        return "You own $100"
+        return "Congratulations , You own $100"
     }else if(twoConsicutiveMatch(arr)){
-        return "You own $20"
+        return "Congratulations , You own $20"
     }else if(twoNonConsicutiveMatch(arr)){
-        return "You own $10"
+        return "Congratulations , You own $10"
     }else{
         return "Oops ! Better luck next time"
     }
