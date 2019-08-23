@@ -95,3 +95,17 @@ Points after clarification :
 1) the machine should be ready for another process immediately after the full cycle(win or lose)
 
 2) no need to automatically start if it is not a first try
+
+Problems
+
+1) heavy code for reading and understanding
+
+2) usage of sagas without any purposes
+
+3) unused variables and methods
+
+4) code style
+
+5) magic numbers"
+
+ 
